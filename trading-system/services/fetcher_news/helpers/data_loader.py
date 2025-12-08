@@ -158,8 +158,8 @@ def load_data_to_db(df: pd.DataFrame, engine: Engine):
 if __name__ == "__main__":
     from services.fetcher_news.helpers.transform_news import transform_news
     from sql.config.db_config import get_db_engine
-    from services.fetcher_news.helpers.fetch_news import fetch_from_cryptopanic
-    df_for_analysis = fetch_from_cryptopanic(max_requests=10)
+    from services.fetcher_news.helpers.fetch_news import fetch_from_coinstats
+    df_for_analysis = fetch_from_coinstats()
     processed_df = transform_news(df_for_analysis)
     engine = get_db_engine()
     try:
@@ -167,5 +167,6 @@ if __name__ == "__main__":
         print("Data loaded successfully.")
     except Exception as e:
         print(f"Error loading data to DB: {e}")
-        print(f"Columns in df {processed_df.columns}")
         raise
+
+        

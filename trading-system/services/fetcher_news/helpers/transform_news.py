@@ -9,7 +9,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import numpy as np
 import time
 
-from services.fetcher_news.helpers.fetch_news import fetch_from_cryptopanic
+from services.fetcher_news.helpers.fetch_news import fetch_from_coinstats
 
 # --- CONSTANTS & MODEL INITIALIZATION ---
 HF_MODEL = os.getenv("HF_MODEL", "burakutf/finetuned-finbert-crypto")
@@ -117,7 +117,7 @@ def transform_news(news: pd.DataFrame) -> pd.DataFrame:
     # 5. Final Column Selection and Renaming
     final_df = news.rename(columns={
         'published_at': 'publication_time',
-        'source_name': 'source', # Assuming 'source_name' column was generated in fetch_from_cryptopanic
+        'source_name': 'source', # Assuming 'source_name' column was generated in fetch_from_coinstats
     })
     
     # Define columns for the final output DataFrame
@@ -139,7 +139,7 @@ def transform_news(news: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
 
     # Fetching up to 1000 posts
-    df_for_analysis = fetch_from_cryptopanic(max_requests=10)
+    df_for_analysis = fetch_from_coinstats()
     
     processed_df = transform_news(df_for_analysis)
     

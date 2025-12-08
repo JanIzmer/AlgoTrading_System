@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS technical_indicators (
 -- ===========================================
 -- 3. Table: news_source
 -- ===========================================
+
 CREATE TABLE IF NOT EXISTS news_source (
     source_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
